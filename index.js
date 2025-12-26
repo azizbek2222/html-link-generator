@@ -25,6 +25,27 @@ if (welcomeMsg) {
     welcomeMsg.innerText = `Xush kelibsiz, ${userName}!`;
 }
 
+// AdsGram Reklama Integratsiyasi
+const AdController = window.Adsgram?.init({ blockId: "4723" }); // "your-block-id" o'rniga o'zingiznikini qo'ying
+
+async function showAdOnStart() {
+    // sessionStorage ilova yopilguncha ma'lumotni saqlaydi
+    // Agar o'yindan qaytsa, 'adShown' mavjud bo'ladi va reklama chiqmaydi
+    if (!sessionStorage.getItem('adShown')) {
+        if (AdController) {
+            AdController.show().then(() => {
+                sessionStorage.setItem('adShown', 'true');
+                console.log("Reklama ko'rsatildi");
+            }).catch((err) => {
+                console.error("Reklama yuklanmadi:", err);
+            });
+        }
+    }
+}
+
+// Ilovaga kirganda reklamani chaqirish
+showAdOnStart();
+
 // Balansni Realtime o'qish
 const balanceRef = ref(db, 'users/' + userId + '/balance');
 onValue(balanceRef, (snapshot) => {
@@ -38,4 +59,7 @@ document.getElementById('shashka-btn')?.addEventListener('click', () => window.l
 document.getElementById('mines-btn')?.addEventListener('click', () => window.location.href = 'mines.html');
 document.getElementById('crash-btn')?.addEventListener('click', () => window.location.href = 'crash.html');
 
-if (tg) { tg.expand(); tg.ready(); }
+if (tg) { 
+    tg.expand(); 
+    tg.ready(); 
+}
