@@ -50,7 +50,7 @@ function updateUI() {
         rocketEl.style.transform = `scale(${1 + (currentMultiplier-1)*0.1}) rotate(-45deg)`;
         if (!hasCashedOut) {
             cashoutBtn.style.display = 'block';
-            potentialWinEl.innerText = (currentMultiplier * 0.00001).toFixed(6);
+            potentialWinEl.innerText = (currentMultiplier * 0.0001).toFixed(6);
         }
     } else if (gameState === "crashed") {
         multiplierEl.style.color = "#ef4444";
@@ -71,7 +71,7 @@ function updateUI() {
 cashoutBtn.addEventListener('click', async () => {
     if (gameState !== "flying" || hasCashedOut) return;
     hasCashedOut = true;
-    const winAmount = currentMultiplier * 0.00001;
+    const winAmount = currentMultiplier * 0.0001;
     
     const userRef = ref(db, `users/${userId}`);
     const snap = await get(userRef);
