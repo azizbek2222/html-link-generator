@@ -11,54 +11,41 @@ const firebaseConfig = {
   appId: "1:589500919880:web:3bb0beedf38b373951687d"
 };
 
-// Firebase-ni ishga tushirish
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-
-// Telegram WebApp obyektini olish
 const tg = window.Telegram?.WebApp;
 const balanceEl = document.getElementById('user-balance');
 const welcomeMsg = document.getElementById('welcome-msg');
 
-// Telegramdan foydalanuvchi ma'lumotlarini olish
-// Agar brauzerda test qilayotgan bo'lsangiz 'test_user' ishlatiladi
 const tgUser = tg?.initDataUnsafe?.user;
 const userId = tgUser?.id || "test_user"; 
 const userName = tgUser?.first_name || "Foydalanuvchi";
 
-// Sahifada ismni ko'rsatish
 if (welcomeMsg) {
     welcomeMsg.innerText = `Xush kelibsiz, ${userName}!`;
 }
 
-// Balansni Telegram ID orqali Realtime Database-dan olish
+// Balansni olish
 const balanceRef = ref(db, 'users/' + userId + '/balance');
 onValue(balanceRef, (snapshot) => {
     const data = snapshot.val();
-    // Agar balans bo'lmasa 0.00000 deb ko'rsatadi
     const currentBalance = data !== null ? parseFloat(data).toFixed(5) : "0.00000";
-    
-    if (balanceEl) {
-        balanceEl.innerText = currentBalance;
-    }
-}, (error) => {
-    console.error("Balansni yuklashda xato:", error);
+    if (balanceEl) balanceEl.innerText = currentBalance;
 });
 
-// O'yinni ochish funksiyasi
+// O'yinlarni ochish funksiyasi
 window.openGame = (game) => {
     if (game === 'shashka') {
         window.location.href = 'shashka.html';
+    } else if (game === 'mines') {
+        window.location.href = 'mines.html'; // Mines o'yini uchun fayl
     }
 };
 
-// Shashka tugmasiga hodisa bog'lash
-const shashkaBtn = document.getElementById('shashka-btn');
-if (shashkaBtn) {
-    shashkaBtn.addEventListener('click', () => openGame('shashka'));
-}
+// Tugmalarga hodisalarni bog'lash
+document.getElementById('shashka-btn')?.addEventListener('click', () => openGame('shashka'));
+document.getElementById('mines-btn')?.addEventListener('click', () => openGame('mines'));
 
-// Telegram Mini App-ni to'liq ekranga yoyish
 if (tg) {
     tg.expand();
     tg.ready();

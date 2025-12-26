@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Live Crash - GameZone</title>
+    <link rel="stylesheet" href="crash.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo"><i class="fas fa-rocket-launch"></i> GALAXY CRASH</div>
+        <div class="balance-container">
+            <i class="fas fa-wallet"></i>
+            <span id="user-balance">0.00000</span> <small>USDT</small>
+        </div>
+    </header>
+
+    <main class="crash-main">
+        <div class="game-container">
+            <div class="display-area" id="display-area">
+                <div class="center-content">
+                    <div id="multiplier">1.00x</div>
+                    <div id="rocket">🚀</div>
+                </div>
+                <div class="stars"></div>
+                <div class="glow-effect"></div>
+            </div>
+
+            <div class="game-info-bar">
+                <span id="game-status">Parvoz tayyorlanmoqda...</span>
+            </div>
+
+            <div class="controls">
+                <button id="cashout-btn" class="btn-cashout" style="display: none;">
+                    💰 PULNI OLISH (<span id="potential-win">0.00</span>)
+                </button>
+                <div class="multiplayer-badge">
+                    <i class="fas fa-users"></i> LIVE MULTIPLAYER
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script type="module" src="crash.js"></script>
+</body>
+</html>

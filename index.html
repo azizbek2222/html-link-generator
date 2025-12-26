@@ -2,10 +2,11 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>O'yinlar Portali</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GameZone - Telegram Mini App</title>
     <link rel="stylesheet" href="index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
 </head>
 <body>
 
@@ -26,11 +27,29 @@
         <section class="games-list">
             <h3>O'yinlar ro'yxati</h3>
             
-            <div class="game-card" id="shashka-btn" style="cursor: pointer;">
+            <div class="game-card" id="shashka-btn">
                 <div class="game-icon">🏁</div>
                 <div class="game-info">
                     <h4>Shashka</h4>
-                    <p>Do'stlaringiz bilan shashka o'ynang</p>
+                    <p>AI bilan o'ynang va USDT yuting</p>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+
+            <div class="game-card" id="mines-btn" style="margin-top: 15px;">
+                <div class="game-icon">💣</div>
+                <div class="game-info">
+                    <h4>Mines</h4>
+                    <p>Minalardan ehtiyot bo'ling va yuting</p>
+                </div>
+                <i class="fas fa-chevron-right"></i>
+            </div>
+
+            <div class="game-card" id="crash-btn" style="margin-top: 15px;">
+                <div class="game-icon">🚀</div>
+                <div class="game-info">
+                    <h4>Crash</h4>
+                    <p>Raketa portlashidan oldin yutuqni oling</p>
                 </div>
                 <i class="fas fa-chevron-right"></i>
             </div>
