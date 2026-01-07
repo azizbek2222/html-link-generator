@@ -5,8 +5,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     try {
         const currentBalance = await getUserBalance();
-        balanceEl.innerText = currentBalance.toFixed(6);
+        // NaN tekshiruvi
+        if (currentBalance === null || isNaN(currentBalance)) {
+            balanceEl.innerText = "0.000000";
+        } else {
+            balanceEl.innerText = parseFloat(currentBalance).toFixed(6);
+        }
     } catch (error) {
-        console.error("Balansni yuklashda xato:", error);
+        console.error("Xato:", error);
+        balanceEl.innerText = "0.000000";
     }
 });
