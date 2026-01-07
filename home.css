@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #0f172a;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+/* Balans dizayni */
+.header {
+    margin-bottom: 40px;
+}
+
+.balance-card {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+    border: 1px solid #475569;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.label {
+    color: #94a3b8;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.amount-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.coin-icon {
+    width: 25px;
+    height: 25px;
+}
+
+#balance {
+    font-size: 32px;
+    font-weight: bold;
+    color: #22c55e; /* Yashil rang */
+}
+
+/* O'yin tugmalari */
+.game-selection h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #cbd5e1;
+}
+
+.buttons-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.game-card {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 10px;
+    border-radius: 15px;
+    transition: transform 0.2s, background 0.3s;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.game-card:active {
+    transform: scale(0.95);
+}
+
+.spin {
+    background: linear-gradient(45deg, #f59e0b, #d97706);
+}
+
+.mines {
+    background: linear-gradient(45deg, #ef4444, #b91c1c);
+}
+
+.icon {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.game-card span {
+    font-weight: bold;
+    font-size: 18px;
+}

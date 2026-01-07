@@ -1,0 +1,186 @@
+/* Umumiy sozlamalar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: #0f172a;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Header va Balans */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.back-btn {
+    text-decoration: none;
+    color: #94a3b8;
+    font-size: 16px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    color: white;
+}
+
+.mini-balance {
+    background: rgba(30, 41, 59, 0.8);
+    padding: 8px 16px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #334155;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.mini-balance img {
+    width: 20px;
+    height: 20px;
+}
+
+#balance {
+    font-weight: bold;
+    color: #f8fafc;
+    font-size: 16px;
+}
+
+/* Baraban (Wheel) Dizayni */
+.wheel-wrapper {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    margin: 0 auto 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Qizil ko'rsatkich (Indicator) */
+.indicator {
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 32px;
+    color: #ef4444;
+    z-index: 20;
+    filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+}
+
+.wheel {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 10px solid #1e293b;
+    position: relative;
+    overflow: hidden;
+    transition: transform 4s cubic-bezier(0.15, 0, 0.15, 1);
+    box-shadow: 0 0 30px rgba(0,0,0,0.5), inset 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* Sektorlar */
+.sector {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    background: var(--clr);
+    transform-origin: bottom right;
+    transform: rotate(calc(45deg * var(--i))); /* Har bir sektor 45 gradusdan */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Sektorni uchburchak shakliga keltirish */
+    clip-path: polygon(0 0, 100% 0, 100% 100%); 
+    border: 0.5px solid rgba(255,255,255,0.05);
+}
+
+/* Sektor ichidagi yozuvlar (Summalar) */
+.sector span {
+    position: absolute;
+    /* 22.5deg - bu 45 darajaning yarmi, yozuvni sektor markaziga qo'yadi */
+    /* translateY(-75px) - yozuvni g'ildirak chetiga suradi */
+    transform: rotate(22.5deg) translateY(-75px); 
+    font-size: 11px;
+    font-weight: 800;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
+    text-transform: uppercase;
+}
+
+/* Aylantirish tugmasi */
+.spin-button {
+    background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+    color: white;
+    border: none;
+    padding: 16px 50px;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 800;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(34, 197, 94, 0.3);
+    transition: 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.spin-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(34, 197, 94, 0.4);
+}
+
+.spin-button:active {
+    transform: translateY(1px);
+}
+
+.spin-button:disabled {
+    background: #475569;
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Natija matni */
+#result-text {
+    margin-top: 25px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #fbbf24;
+    min-height: 27px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Barabanning o'rtasidagi kichik nuqta */
+.wheel::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 15px;
+    height: 15px;
+    background: #f8fafc;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}

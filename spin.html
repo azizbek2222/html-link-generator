@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lucky Spin - GAMEE</title>
+    <link rel="stylesheet" href="spin.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+
+    <div class="app-container">
+        <header class="header">
+            <a href="home.html" class="back-btn">⬅ Orqaga</a>
+            <div class="mini-balance">
+                <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT">
+                <span id="balance">0.000000</span>
+            </div>
+        </header>
+
+        <main class="spin-section">
+            <div class="wheel-wrapper">
+                <div class="indicator">▼</div> 
+                <div id="wheel" class="wheel">
+                    <div class="sector" style="--i:1; --clr:#f59e0b;"><span>0.0001</span></div>
+                    <div class="sector" style="--i:2; --clr:#d97706;"><span>0.000005</span></div>
+                    <div class="sector" style="--i:3; --clr:#f59e0b;"><span>0.00005</span></div>
+                    <div class="sector" style="--i:4; --clr:#d97706;"><span>0.0005</span></div>
+                    <div class="sector" style="--i:5; --clr:#f59e0b;"><span>0.0001</span></div>
+                    <div class="sector" style="--i:6; --clr:#d97706;"><span>0.000005</span></div>
+                    <div class="sector" style="--i:7; --clr:#f59e0b;"><span>0.00005</span></div>
+                    <div class="sector" style="--i:8; --clr:#d97706;"><span>0.0005</span></div>
+                </div>
+            </div>
+
+            <button id="spinBtn" class="spin-button">AYLANTIRISH</button>
+            <p id="result-text"></p>
+        </main>
+    </div>
+
+    <script type="module" src="spin.js"></script>
+</body>
+</html>
