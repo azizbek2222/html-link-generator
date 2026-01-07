@@ -14,28 +14,40 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 
-// Telegram WebApp foydalanuvchisini olish
+// Telegram foydalanuvchisini olish
 const tg = window.Telegram.WebApp;
-tg.expand(); // Ilovani to'liq ekranga yoyish
-const userId = tg.initDataUnsafe?.user?.id || "local_test_user";
+const userId = tg.initDataUnsafe?.user?.id || "local_user_test"; // ID bo'lmasa test ID ishlatiladi
 
 export async function getUserBalance() {
-    const userRef = ref(db, 'users/' + userId);
-    const snapshot = await get(userRef);
-    if (snapshot.exists()) {
-        return parseFloat(snapshot.val().balance);
-    } else {
-        const initialBalance = 0.00;
-        await set(userRef, {
-            id: userId,
-            balance: initialBalance,
-            username: tg.initDataUnsafe?.user?.username || "unknown"
-        });
-        return initialBalance;
+    try {
+        const userRef = ref(db, 'users/' + userId);
+        const snapshot = await get(userRef);
+        
+        if (snapshot.exists()) {
+            let val = snapshot.val().balance;
+            let num = parseFloat(val);
+            return isNaN(num) ? 0 : num; // Agar bazada raqam bo'lmasa 0 qaytaradi
+        } else {
+            // Yangi foydalanuvchi yaratish
+            await set(userRef, {
+                id: userId,
+                balance: 0,
+                username: tg.initDataUnsafe?.user?.username || "Guest"
+            });
+            return 0;
+        }
+    } catch (e) {
+        console.error("Firebase o'qishda xato:", e);
+        return 0;
     }
 }
 
 export async function updateBalanceInDB(newBalance) {
-    const userRef = ref(db, 'users/' + userId);
-    await update(userRef, { balance: parseFloat(newBalance) });
+    try {
+        const userRef = ref(db, 'users/' + userId);
+        // Yangi balansni son ko'rinishida saqlash juda muhim
+        await update(userRef, { balance: parseFloat(newBalance) });
+    } catch (e) {
+        console.error("Firebase yozishda xato:", e);
+    }
 }

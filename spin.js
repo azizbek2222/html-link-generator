@@ -14,7 +14,12 @@ let currentRotation = 0;
 
 async function init() {
     const bal = await getUserBalance();
-    balanceEl.innerText = bal.toFixed(6);
+    // null yoki NaN emasligini tekshirish
+    if (bal !== null && !isNaN(bal)) {
+        balanceEl.innerText = bal.toFixed(6);
+    } else {
+        balanceEl.innerText = "0.000000";
+    }
 }
 
 spinBtn.addEventListener('click', async () => {
@@ -33,7 +38,10 @@ spinBtn.addEventListener('click', async () => {
         const sectorIndex = Math.floor(winningAngle / 45);
         const winAmount = parseFloat(rewards[sectorIndex]);
 
-        const currentBal = await getUserBalance();
+        let currentBal = await getUserBalance();
+        // Hisob-kitob qilishdan oldin son ekanligiga ishonch hosil qilish
+        if (isNaN(currentBal)) currentBal = 0;
+        
         const newBal = (currentBal + winAmount).toFixed(6);
         
         await updateBalanceInDB(newBal);
